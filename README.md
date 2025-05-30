@@ -6,40 +6,48 @@ A modular template for FastAPI projects with an organized structure and a `/task
 
 ```
 fastapi-template/
-├── src/
+├── app/
 │   ├── config/
 │   │   ├── __init__.py        # Configuration exports
-│   │   ├── settings.py         # Application settings
-│   │   ├── database.py         # SQLAlchemy database configuration
-│   │   └── logger.py           # Logging configuration
+│   │   ├── settings.py        # Application settings
+│   │   ├── database.py        # SQLAlchemy database configuration
+│   │   └── logger.py          # Console logging configuration
 │   ├── controllers/
-│   │   └── task_controller.py  # Task controller with input validation
-│   ├── entities/
-│   │   └── task.py             # SQLAlchemy entity definition
+│   │   ├── __init__.py        # Controllers exports
+│   │   └── task_controller.py # Task controller with input validation
+│   ├── models/
+│   │   ├── __init__.py        # Models exports
+│   │   └── task.py            # SQLAlchemy model definition
 │   ├── routes/
-│   │   └── task_routes.py      # Task routes with documentation
+│   │   ├── __init__.py        # Routes exports
+│   │   └── task_routes.py     # Task routes with documentation
 │   ├── schemas/
-│   │   └── task.py             # Pydantic validation schemas for tasks
+│   │   ├── __init__.py        # Schemas exports
+│   │   └── task.py            # Pydantic validation schemas for tasks
 │   ├── services/
-│   │   └── task_service.py     # Task service with business logic
-│   ├── utils/
-│   │   ├── errors.py           # Custom error classes
-│   │   └── error_handler.py    # Global error handler
-│   └── migrations/             # Database migrations with Alembic
-│       ├── versions/           # Migration versions
-│       ├── env.py              # Alembic environment configuration
-│       └── script.py.mako      # Migration script template
-│   ├── main.py                 # FastAPI application configuration
-├── alembic.ini                 # Alembic configuration
-├── main.py                     # Application entry point
-├── .env.example                # Example environment variables
-└── requirements.txt            # Project dependencies
+│   │   ├── __init__.py        # Services exports
+│   │   └── task_service.py    # Task service with business logic
+│   └── utils/
+│       ├── __init__.py        # Utils exports
+│       ├── errors.py          # Custom error classes
+│       └── error_handler.py   # Global error handler
+├── migrations/                # Database migrations with Alembic
+│   ├── versions/              # Migration versions
+│   ├── env.py                 # Alembic environment configuration
+│   └── script.py.mako         # Migration script template
+├── alembic.ini                # Alembic configuration
+├── main.py                    # Application entry point
+├── run.py                     # Helper script to run the application
+├── pyproject.toml             # Project metadata and dependencies
+├── requirements.txt           # Project dependencies
+├── .env.example               # Example environment variables
+└── README.md                  # Project documentation
 ```
 
 ## Features
 
 - Modular and scalable structure following clean architecture principles
-- Separation of concerns with controllers, services, and entities
+- Separation of concerns with controllers, services, and models
 - Centralized error handling with custom exception classes
 - Data validation with Pydantic schemas
 - Database migrations with Alembic
@@ -94,10 +102,14 @@ This project follows a clean architecture approach with clear separation of conc
 
 - **Controllers**: Handle HTTP requests and responses, input validation
 - **Services**: Contain business logic and interact with the database
-- **Entities**: Define database models using SQLAlchemy
+- **Models**: Define database models using SQLAlchemy
 - **Schemas**: Define data validation and serialization with Pydantic
 - **Routes**: Define API endpoints and connect them to controllers
 - **Config**: Application configuration and dependencies
 - **Utils**: Utility functions and error handling
 
 This architecture makes the codebase more maintainable, testable, and scalable.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.

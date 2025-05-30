@@ -5,7 +5,7 @@ from app.config.database import Base
 
 class Task(Base):
     """
-    Task entity for storing task data
+    Task model for storing task data
     """
     __tablename__ = "tasks"
 

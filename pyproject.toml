@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastapi-template"
+version = "0.1.0"
+description = "A modular template for FastAPI projects with an organized structure"
+readme = "README.md"
+authors = [
+    {name = "Luis Alamo", email = "luismalamoc@gmail.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Framework :: FastAPI",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.27.0",
+    "pydantic>=2.6.0",
+    "pydantic-settings>=2.2.0",
+    "sqlalchemy>=2.0.27",
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.7",
+    "alembic>=1.13.0",
+    "loguru>=0.7.2",
+    "email-validator>=2.1.0",
+    "fastapi-healthz>=0.2.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/luismalamoc/fastapi-template"
+"Bug Tracker" = "https://github.com/luismalamoc/fastapi-template/issues"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+python_classes = "Test*"
