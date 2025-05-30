@@ -1,9 +1,9 @@
 from typing import List, Optional
 from sqlalchemy.orm import Session
 
-from app.models.task import Task
-from app.api.tasks.schemas import TaskCreate, TaskUpdate, TaskResponse
-from app.utils.exceptions import NotFoundException
+from app.entities.task import Task
+from app.schemas.task import TaskCreate, TaskUpdate, TaskResponse
+from app.utils.errors import NotFoundException
 
 class TaskService:
     """

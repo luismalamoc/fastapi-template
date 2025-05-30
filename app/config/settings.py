@@ -24,6 +24,6 @@ class Settings(BaseSettings):
     ]
     
     # Database settings
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./test.db")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./tasks.db")
 
 settings = Settings()

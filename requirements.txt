@@ -5,3 +5,7 @@ pydantic-settings>=2.2.0
 sqlalchemy>=2.0.27
 python-dotenv>=1.0.0
 python-multipart>=0.0.7
+alembic>=1.13.0
+loguru>=0.7.2
+email-validator>=2.1.0
+fastapi-healthz>=0.2.0

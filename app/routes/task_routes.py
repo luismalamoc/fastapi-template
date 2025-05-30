@@ -1,10 +1,10 @@
-from fastapi import APIRouter, Depends, status, Query
-from sqlalchemy.orm import Session
+from fastapi import APIRouter, status, Depends
 from typing import List
+from sqlalchemy.orm import Session
 
-from app.api.tasks.schemas import TaskResponse, TaskCreate, TaskUpdate
-from app.api.tasks.service import TaskService
-from app.dependencies.database import get_db
+from app.controllers.task_controller import TaskController
+from app.schemas.task import TaskResponse, TaskCreate, TaskUpdate
+from app.config.database import get_db
 
 router = APIRouter(prefix="/tasks", tags=["Tasks"])
 
@@ -15,15 +15,11 @@ router = APIRouter(prefix="/tasks", tags=["Tasks"])
     summary="Get all tasks",
     description="Retrieve a list of all tasks with pagination"
 )
-async def get_tasks(
-    skip: int = Query(0, ge=0, description="Number of tasks to skip"),
-    limit: int = Query(100, ge=1, le=100, description="Maximum number of tasks to return"),
-    db: Session = Depends(get_db)
-):
+async def get_tasks(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """
     Get all tasks with pagination
     """
-    return await TaskService.get_tasks(db, skip, limit)
+    return await TaskController.get_tasks(skip=skip, limit=limit, db=db)
 
 @router.get(
     "/{task_id}",
@@ -36,7 +32,7 @@ async def get_task(task_id: int, db: Session = Depends(get_db)):
     """
     Get a task by ID
     """
-    return await TaskService.get_task(db, task_id)
+    return await TaskController.get_task(task_id=task_id, db=db)
 
 @router.post(
     "",
@@ -49,7 +45,7 @@ async def create_task(task_data: TaskCreate, db: Session = Depends(get_db)):
     """
     Create a new task
     """
-    return await TaskService.create_task(db, task_data)
+    return await TaskController.create_task(task_data=task_data, db=db)
 
 @router.patch(
     "/{task_id}",
@@ -62,7 +58,7 @@ async def update_task(task_id: int, task_data: TaskUpdate, db: Session = Depends
     """
     Update an existing task
     """
-    return await TaskService.update_task(db, task_id, task_data)
+    return await TaskController.update_task(task_id=task_id, task_data=task_data, db=db)
 
 @router.delete(
     "/{task_id}",
@@ -74,4 +70,4 @@ async def delete_task(task_id: int, db: Session = Depends(get_db)):
     """
     Delete a task
     """
-    await TaskService.delete_task(db, task_id)
+    await TaskController.delete_task(task_id=task_id, db=db)

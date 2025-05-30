@@ -1,12 +1,11 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
+from app.config.database import Base
 
 class Task(Base):
     """
-    Task model for storing task data
+    Task entity for storing task data
     """
     __tablename__ = "tasks"
 
